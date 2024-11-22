@@ -1,0 +1,57 @@
+{
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"id": "batiment.18362875",
+			"geometry": {
+				"type": "MultiPolygon",
+				"coordinates": [
+					[
+						[
+							[4.83607042, 45.77369876, 238.6],
+							[4.8361345, 45.77376798, 238.6],
+							[4.83617462, 45.77381326, 238.6],
+							[4.83624813, 45.77377874, 238.6],
+							[4.83626207, 45.7737722, 238.6],
+							[4.83615921, 45.77365949, 238.6],
+							[4.83607042, 45.77369876, 238.6]
+						]
+					]
+				]
+			},
+			"geometry_name": "geometrie",
+			"properties": {
+				"cleabs": "BATIMENT0000000240879442",
+				"nature": "Indifférenciée",
+				"usage_1": "Résidentiel",
+				"usage_2": "Annexe",
+				"construction_legere": false,
+				"etat_de_l_objet": "En service",
+				"date_creation": "2010-07-15T07:31:40.330Z",
+				"date_modification": "2019-03-15T08:13:01.848Z",
+				"date_d_apparition": "1790-01-01Z",
+				"date_de_confirmation": null,
+				"sources": null,
+				"identifiants_sources": "",
+				"methode_d_acquisition_planimetrique": "BDParcellaire recalée",
+				"methode_d_acquisition_altimetrique": "Corrélation",
+				"precision_planimetrique": 3,
+				"precision_altimetrique": 1,
+				"nombre_de_logements": 8,
+				"nombre_d_etages": 6,
+				"materiaux_des_murs": "20",
+				"materiaux_de_la_toiture": "10",
+				"hauteur": 25.6,
+				"altitude_minimale_sol": 213.1,
+				"altitude_minimale_toit": 238.6,
+				"altitude_maximale_toit": 239.5,
+				"altitude_maximale_sol": 218.5,
+				"origine_du_batiment": "Cadastre",
+				"appariement_fichiers_fonciers": "A 1.0",
+				"identifiants_rnb": "ZWHEZKQSSXSC"
+			},
+			"bbox": [4.83607042, 45.77365949, 4.83626207, 45.77381326]
+		}
+	]
+}

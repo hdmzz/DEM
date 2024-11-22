@@ -1,0 +1,35 @@
+{
+  "name": "my-own-dem-visualizer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@mapbox/tile-cover": "^3.0.2",
+    "@types/geolib": "^2.0.23",
+    "@types/get-pixels": "^3.3.4",
+    "@types/mapbox": "^1.6.45",
+    "@types/mapbox__tile-cover": "^3.0.4",
+    "@types/proj4": "^2.5.5",
+    "@types/turf": "^3.5.32",
+    "ndarray": "^1.0.19",
+    "proj4": "^2.12.1",
+    "turf": "^3.0.14",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "@mapbox/sphericalmercator": "^2.0.0",
+    "@turf/destination": "^7.1.0",
+    "@turf/helpers": "^7.1.0",
+    "@types/three": "^0.168.0",
+    "geolib": "^3.3.4",
+    "geotiff": "^2.1.3",
+    "mapbox": "^1.0.0-beta10",
+    "three": "^0.169.0"
+  }
+}
