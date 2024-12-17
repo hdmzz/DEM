@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import { DragControls } from 'three/examples/jsm/Addons.js';
 
 class	View extends THREE.EventDispatcher {
 	scene: THREE.Scene;
