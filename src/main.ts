@@ -46,21 +46,42 @@ document.body.addEventListener("drop", (e) => {
 	};
 });
 
-function loadImage(imageSrc: string) {
-	const textureLoader = new THREE.TextureLoader();
+let		handles: THREE.Mesh[] = [];
+let		photoPlaneMesh: THREE.Mesh;
+
+function	loadImage( imageSrc: string ) {
+	const	textureLoader = new THREE.TextureLoader();
 	textureLoader.load(imageSrc, (texture) => {
-		const geometry = new THREE.PlaneGeometry(100, 100);
+		console.log( imageSrc)
+		//!ajuster la widht et la height en fonction de limage
+		const	aspectRatio = 16 / 9;
+		const	currentWidth = 100, currentHeight = 100;
+		const geometry = new THREE.PlaneGeometry( currentWidth, currentHeight );
 		const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-		const photoPlane = new THREE.Mesh(geometry, material);
-		photoPlane.position.set(0, 0, 0);
-		photoPlane.rotateX( -Math.PI / 2)
-		view.scene.add(photoPlane);
+		const photoPlane = new THREE.Mesh( geometry, material );
+		photoPlane.position.set( 0, 0, 0 );
+		//photoPlane.rotateX( -Math.PI / 2)
+		view.scene.add( photoPlane );
+		photoPlaneMesh = photoPlane;
 
 		//addHandles
-		const	handles = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+		const	handleGeom = new THREE.BoxGeometry( 10, 10, 10 );
 		const	handlesMat = new THREE.MeshBasicMaterial({ color: "yellow" });
 
+		const	positions = [
+			[-currentWidth / 2, currentHeight / 2],
+			[currentWidth / 2, currentHeight / 2],
+			[-currentWidth / 2, -currentHeight / 2],
+			[currentWidth / 2, -currentHeight / 2],
+		];
 
+		positions.forEach(( pos ) => {
+			const	handle = new THREE.Mesh( handleGeom, handlesMat );
+			handle.position.set( pos[0], pos[1], 0 );
+			view.scene.add( handle );
+			handles.push( handle );
+			activateDragControls();
+		});
 
 		const	dragControl = new DragControls([photoPlane], view.camera, view.renderer.domElement);
 
@@ -72,4 +93,32 @@ function loadImage(imageSrc: string) {
 			view.controls.enabled = true;
 		});
 	});
-}
+};
+
+function	activateDragControls() {
+	const	dragControls = new DragControls( handles, view.camera, view.renderer.domElement );
+
+	dragControls.addEventListener( "dragstart", () => {
+		view.controls.enabled = false;
+	});
+
+	dragControls.addEventListener( "dragend", () => {
+		view.controls.enabled = true;
+	});
+
+	dragControls.addEventListener( "drag", ( event ) => {
+		const	handle = event.object;
+
+		const	distanceX = Math.abs( handles[0].position.x - handles[1].position.x );
+		updatePlane( distanceX );
+	});
+};
+
+function	updatePlane( distanceX: number ) {
+	photoPlaneMesh.geometry.dispose();
+	photoPlaneMesh.geometry = new THREE.PlaneGeometry( distanceX, distanceX );
+	handles[0].position.set(-distanceX / 2, distanceX / 2, 0); // Coin sup gauche
+	handles[1].position.set(distanceX / 2, distanceX / 2, 0); // Coin sup droit
+	handles[2].position.set(-distanceX / 2, -distanceX / 2, 0); // Coin inf gauche
+	handles[3].position.set(distanceX / 2, -distanceX / 2, 0); // Coin inf droit
+};
